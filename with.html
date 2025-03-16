@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #ffebf0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+            overflow: hidden;
+        }
+        .message {
+            font-size: 2rem;
+            color: #ff4d6d;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .heart {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: pink;
+            transform: rotate(45deg);
+            animation: floatUp 5s infinite ease-in-out;
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: pink;
+            border-radius: 50%;
+        }
+        .heart::before { top: -5px; left: 0; }
+        .heart::after { left: 5px; top: 0; }
+        
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1) rotate(45deg); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1.5) rotate(45deg); opacity: 0; }
+        }
+        
+        .button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #ff007f, #ff4d6d);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 10px rgba(255, 77, 109, 0.8);
+            text-decoration: none;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 77, 109, 1);
+        }
+    </style>
+</head>
+<body>
+    <div class="message">Dear Ayang, you are my everything 💖</div>
+    <a href="next.html" class="button">Click for More Love</a>
+    
+    <script>
+        function createHeart() {
+            let heart = document.createElement("div");
+            heart.classList.add("heart");
+            document.body.appendChild(heart);
+            
+            let x = Math.random() * window.innerWidth;
+            let duration = Math.random() * 3 + 2;
+            heart.style.left = `${x}px`;
+            heart.style.animationDuration = `${duration}s`;
+            
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+        
+        setInterval(createHeart, 500);
+    </script>
+</body>
+</html>
